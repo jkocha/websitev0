@@ -1,4 +1,5 @@
 import { PortableText, PortableTextComponents } from '@portabletext/react'
+import { PortableTextBlock } from '@portabletext/types'
 import Image from 'next/image'
 import { urlFor } from '@/sanity/lib/client'
 
@@ -66,6 +67,6 @@ const components: PortableTextComponents = {
   },
 }
 
-export function CustomPortableText({ value }: { value: any }) {
+export function CustomPortableText({ value }: { value: PortableTextBlock | PortableTextBlock[] }) {
   return <PortableText value={value} components={components} />
 }

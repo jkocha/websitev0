@@ -1,4 +1,5 @@
 import { groq } from 'next-sanity'
+import { PortableTextBlock } from '@portabletext/types'
 import { client } from './client'
 import { BlogPost, BlogPostPreview, Project, ProjectPreview } from './types'
 
@@ -132,12 +133,20 @@ export async function getAdjacentPosts(slug: string) {
 }
 
 // Helper function to calculate read time
-export function calculateReadTime(content: any[]): number {
+export function calculateReadTime(content: PortableTextBlock[]): number {
   if (!content) return 0
 
   const text = content
     .filter((block) => block._type === 'block')
-    .map((block) => block.children?.map((child: any) => child.text).join(''))
+    .map((block) => {
+      if (block._type === 'block' && block.children) {
+        return block.children
+          .filter((child): child is { text: string } => 'text' in child)
+          .map((child) => child.text)
+          .join('')
+      }
+      return ''
+    })
     .join(' ')
 
   const wordsPerMinute = 200

@@ -2,9 +2,10 @@ import Link from 'next/link'
 import { Card, CardDescription, CardHeader, CardTitle } from './card'
 import { BlogPostPreview } from '@/sanity/lib/types'
 import { calculateReadTime } from '@/sanity/lib/queries'
+import { PortableTextBlock } from '@portabletext/types'
 
 interface BlogPostCardProps {
-  post: BlogPostPreview & { content?: any[] }
+  post: BlogPostPreview & { content?: PortableTextBlock[] }
 }
 
 function formatDate(dateString: string) {
