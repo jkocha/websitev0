@@ -3,6 +3,9 @@ import { getProjects } from '@/sanity/lib/queries'
 import { ProjectCard } from '@/components/project-card'
 import { ProjectCardSkeleton } from '@/components/skeleton'
 
+// Revalidate this page every hour
+export const revalidate = 3600
+
 async function ProjectsGrid() {
   const projects = await getProjects()
 

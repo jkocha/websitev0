@@ -3,6 +3,9 @@ import { getBlogPosts } from '@/sanity/lib/queries'
 import { BlogPostCard } from '@/components/blog-post-card'
 import { BlogPostCardSkeleton } from '@/components/skeleton'
 
+// Revalidate this page every hour
+export const revalidate = 3600
+
 async function BlogPosts() {
   const posts = await getBlogPosts()
 

@@ -12,6 +12,9 @@ import { CustomPortableText } from '@/components/portable-text'
 import { BlogPostSkeleton } from '@/components/skeleton'
 import { client } from '@/sanity/lib/client'
 
+// Revalidate blog posts every hour
+export const revalidate = 3600
+
 interface BlogPostPageProps {
   params: { slug: string }
 }

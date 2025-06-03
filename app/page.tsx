@@ -1,5 +1,8 @@
 import Link from 'next/link'
 
+// Revalidate home page every 24 hours
+export const revalidate = 86400
+
 export default function Home() {
   return (
     <div className="container py-16 md:py-24">
