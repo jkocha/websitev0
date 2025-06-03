@@ -1,0 +1,48 @@
+{
+  "name": "portfolio-site",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,css}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,md,css}\"",
+    "type-check": "tsc --noEmit",
+    "sanity:deploy": "sanity deploy",
+    "clean": "rm -rf .next node_modules",
+    "clean:cache": "rm -rf .next",
+    "analyze": "ANALYZE=true npm run build",
+    "check-all": "npm run type-check && npm run lint && npm run format:check"
+  },
+  "dependencies": {
+    "@portabletext/react": "^3.2.1",
+    "@sanity/image-url": "^1.1.0",
+    "@sanity/vision": "^3.91.0",
+    "clsx": "^2.1.1",
+    "next": "15.3.3",
+    "next-plausible": "^3.12.4",
+    "next-sanity": "^9.12.0",
+    "plaiceholder": "^3.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sanity": "^3.91.0",
+    "sharp": "^0.34.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@typescript-eslint/eslint-plugin": "^8.33.1",
+    "@typescript-eslint/parser": "^8.33.1",
+    "eslint": "^9.28.0",
+    "eslint-config-next": "^15.3.3",
+    "eslint-config-prettier": "^10.1.5",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.12",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
