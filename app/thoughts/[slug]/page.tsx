@@ -16,7 +16,7 @@ import { client } from '@/sanity/lib/client'
 export const revalidate = 3600
 
 interface BlogPostPageProps {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 // Generate static params for all blog posts
@@ -27,7 +27,8 @@ export async function generateStaticParams() {
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const post = await getBlogPost(params.slug)
+  const { slug } = await params
+  const post = await getBlogPost(slug)
 
   if (!post) {
     return {
@@ -161,10 +162,12 @@ async function BlogPostContent({ slug }: { slug: string }) {
   )
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const { slug } = await params
+  
   return (
     <Suspense fallback={<BlogPostSkeleton />}>
-      <BlogPostContent slug={params.slug} />
+      <BlogPostContent slug={slug} />
     </Suspense>
   )
 }
