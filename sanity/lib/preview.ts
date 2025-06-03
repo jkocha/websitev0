@@ -2,9 +2,9 @@ import { draftMode } from 'next/headers'
 import { client } from './client'
 
 export async function getPreviewClient() {
-  const { isEnabled } = draftMode()
+  const draft = await draftMode()
 
-  if (isEnabled) {
+  if (draft.isEnabled) {
     return client.withConfig({
       perspective: 'previewDrafts',
       useCdn: false,
