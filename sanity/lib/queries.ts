@@ -1,5 +1,5 @@
 import { groq } from 'next-sanity'
-import { PortableTextBlock } from '@portabletext/types'
+import { PortableTextBlock, PortableTextSpan } from '@portabletext/types'
 import { client } from './client'
 import { BlogPost, BlogPostPreview, Project, ProjectPreview } from './types'
 
@@ -141,7 +141,7 @@ export function calculateReadTime(content: PortableTextBlock[]): number {
     .map((block) => {
       if (block._type === 'block' && block.children) {
         return block.children
-          .filter((child): child is { text: string } => 'text' in child)
+          .filter((child): child is PortableTextSpan => 'text' in child && '_type' in child)
           .map((child) => child.text)
           .join('')
       }
